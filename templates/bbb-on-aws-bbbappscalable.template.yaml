@@ -428,6 +428,9 @@ Resources:
 
           wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -v xenial-220 -s $instance_fqdn -e ${BBBOperatorEMail} -c $turn_fqdn:$turnsecret
 
+          # Add assets for customized BBB session instance
+          aws s3 cp s3://gomentor/help.html /var/www/bigbluebutton-default/help.html
+
           wget --tries=10  https://raw.githubusercontent.com/blindsidenetworks/scalelite/master/bigbluebutton/scalelite_post_publish.rb -O /usr/local/bigbluebutton/core/scripts/post_publish/scalelite_post_publish.rb
           aws s3 cp s3://${BBBStackBucketStack}/scalelite-config.yml /usr/local/bigbluebutton/core/scripts/scalelite.yml
 
